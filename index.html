@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///Users/robyb/Downloads/portfolio_all_projects.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Roberta Borroni</title>
+<link href="./Portfolio — Roberta Borroni_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f0ebe0;
+    --grey: #1a1a1a;
+    --mid-grey: #2e2e2e;
+    --text-grey: #888;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* ── GLOBAL NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.85);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .cover-stars { position: absolute; inset: 0; pointer-events: none; }
+  .star-dot {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    animation: twinkle var(--d,3s) var(--del,0s) infinite;
+  }
+  .cover-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .cover-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(5rem, 12vw, 13rem);
+    line-height: 0.88;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .cover-title span { color: var(--gold); display: block; }
+  .cover-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--text-grey);
+    margin-top: 2.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .cover-index {
+    position: absolute;
+    right: 4rem; bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .cover-index-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-grey);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cover-index-item:hover { color: var(--gold); }
+  .cover-index-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    color: rgba(201,168,76,0.3);
+    width: 30px;
+  }
+  .cover-bg-text {
+    position: absolute;
+    bottom: -2rem; right: -3rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(8rem, 18vw, 22rem);
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.06);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--gold);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.75rem 0;
+    position: relative;
+    z-index: 10;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker span {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    padding: 0 2rem;
+  }
+
+  /* ── PROJECT WRAPPER ── */
+  .project-chapter {
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* ── PROJECT HERO ── */
+  .project-hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .project-hero-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+  }
+  .project-hero-tag.animated { animation: fadeUp 0.8s 0.3s forwards; }
+  .project-hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(3.5rem, 7vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    opacity: 0;
+  }
+  .project-hero-title.animated { animation: fadeUp 0.9s 0.5s forwards; }
+  .project-hero-title span { color: var(--gold); display: block; }
+  .project-hero-meta {
+    margin-top: 2.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    line-height: 2.2;
+    color: var(--text-grey);
+  }
+  .project-hero-meta.animated { animation: fadeUp 0.9s 0.8s forwards; }
+  .project-hero-meta strong { color: var(--cream); }
+  .project-hero-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-hero-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.2s forwards;
+  }
+  .project-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--black) 0%, transparent 40%),
+                linear-gradient(to top, var(--black) 0%, transparent 30%);
+  }
+  .project-hero-icon {
+    font-size: 10rem;
+    position: relative;
+    z-index: 2;
+    opacity: 0.15;
+    filter: drop-shadow(0 0 60px rgba(201,168,76,0.4));
+    pointer-events: none;
+  }
+  .project-hero-bgtext {
+    position: absolute;
+    bottom: 3rem; right: -2rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(5rem, 12vw, 15rem);
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.1);
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 1.5s 1s forwards;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 0; position: relative; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(3rem, 6vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 3rem;
+  }
+
+  /* ── CONCEPT GRID ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .concept-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    line-height: 1.5;
+    color: var(--cream);
+    border-left: 2px solid var(--gold);
+    padding-left: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .concept-body {
+    font-size: 0.78rem;
+    line-height: 2;
+    color: var(--text-grey);
+    letter-spacing: 0.03em;
+  }
+  .concept-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .concept-card {
+    background: var(--mid-grey);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .concept-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .concept-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .concept-card h4 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .concept-card p { font-size: 0.65rem; line-height: 1.8; color: var(--text-grey); letter-spacing: 0.05em; }
+
+  /* ── FINDINGS / STATS GRID ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    margin: 3rem 0;
+  }
+  .stat-box {
+    background: var(--grey);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .stat-box:hover { background: #222; }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-grey); line-height: 1.6; }
+
+  /* ── GRID 2 COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .two-col-equal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,168,76,0.1);
+  }
+  .two-col-panel {
+    background: var(--grey);
+    padding: 4rem;
+  }
+  .two-col-panel h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .two-col-panel p { font-size: 0.72rem; line-height: 2; color: var(--text-grey); margin-bottom: 1rem; }
+
+  /* ── FEATURES GRID ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2px;
+  }
+  .feature-item {
+    background: var(--mid-grey);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .feature-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s;
+  }
+  .feature-item:hover::before { width: 100%; }
+  .feature-item:hover { background: #252525; }
+  .feature-number {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+    color: rgba(201,168,76,0.06);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .feature-icon { font-size: 2rem; margin-bottom: 1.5rem; }
+  .feature-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .feature-desc { font-size: 0.7rem; line-height: 1.9; color: var(--text-grey); }
+
+  /* ── TABLE ── */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .data-table tr:last-child { border-bottom: 1px solid rgba(201,168,76,0.3); }
+  .data-table td { padding: 1rem 0; font-size: 0.72rem; color: var(--text-grey); letter-spacing: 0.05em; }
+  .data-table td:last-child { text-align: right; font-family: 'Space Mono', monospace; }
+  .data-table tr.total td { color: var(--cream); font-weight: 700; font-size: 0.85rem; padding-top: 1.5rem; }
+  .data-table tr.total td:last-child { color: var(--gold); font-size: 1rem; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 3rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3.5rem;
+    padding-left: 2rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-dot {
+    position: absolute;
+    left: -3.5rem; top: 0.35rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+  }
+  .timeline-time {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .timeline-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream); margin-bottom: 0.6rem; }
+  .timeline-desc { font-size: 0.68rem; line-height: 1.9; color: var(--text-grey); }
+
+  /* ── ELEMENTS / CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .element-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .element-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+  .element-card::before {
+    content: attr(data-bg);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 7rem;
+    color: rgba(201,168,76,0.04);
+    pointer-events: none;
+  }
+  .element-symbol { font-size: 3rem; margin-bottom: 1rem; }
+  .element-name { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.6rem; }
+  .element-sub { font-size: 0.62rem; color: var(--text-grey); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* 3-col cards */
+  .cards-3 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .card-3 {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2.5rem 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card-3:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .card-3-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(201,168,76,0.12);
+    margin-bottom: 0.5rem;
+  }
+  .card-3-title { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.8rem; }
+  .card-3-sub { font-size: 0.65rem; color: var(--text-grey); line-height: 1.8; }
+
+  /* ── IMPERFECTION STRIP ── */
+  .scroll-strip {
+    overflow: hidden;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    padding: 1.5rem 0;
+  }
+  .scroll-strip-inner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 20s linear infinite;
+  }
+  .scroll-strip-inner.rev { animation-direction: reverse; }
+  .scroll-strip-inner span {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+    color: rgba(201,168,76,0.25);
+    margin-right: 3rem;
+  }
+
+  /* ── LOCATIONS ── */
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .location-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .location-card:hover { border-color: var(--gold); }
+  .location-inner { padding: 2rem; }
+  .location-num { font-family: 'Bebas Neue', cursive; font-size: 5rem; line-height: 1; color: rgba(201,168,76,0.12); }
+  .location-city { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 0.1em; color: var(--cream); }
+  .location-date { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
+  .location-note { font-size: 0.6rem; color: var(--text-grey); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+  /* ── COST TABS ── */
+  .costs-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .cost-tab {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    color: var(--text-grey);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s;
+  }
+  .cost-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .cost-panel { display: none; }
+  .cost-panel.active { display: block; }
+  .costs-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .cost-city-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+
+  /* ── TWO EVENTS ── */
+  .two-events {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 5rem;
+  }
+  .event-block {
+    padding: 5rem 4rem;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: background 0.4s;
+  }
+  .event-block:hover { background: rgba(201,168,76,0.03); }
+  .event-block-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .event-block-label::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
+  .event-block h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2rem, 4vw, 4rem); color: var(--cream); line-height: 1; margin-bottom: 0.5rem; }
+  .event-block-date { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-grey); margin-bottom: 2rem; text-transform: uppercase; }
+  .event-block p { font-size: 0.7rem; line-height: 1.9; color: var(--text-grey); margin-bottom: 2rem; }
+  .btn {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--gold); color: var(--black); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: var(--gold); letter-spacing: 0.1em; }
+  .footer-credits { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-grey); text-align: right; line-height: 2; text-transform: uppercase; }
+
+  /* ── CHAPTER DIVIDER ── */
+  .chapter-divider {
+    background: var(--gold);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chapter-divider h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2rem, 5vw, 4rem); color: var(--black); letter-spacing: 0.05em; }
+  .chapter-divider span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.5); }
+
+  /* ── BG COLORS ── */
+  .bg-black { background: var(--black); }
+  .bg-grey { background: var(--grey); }
+
+  /* ── HYPOTHESES ── */
+  .hyp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(201,168,76,0.1); margin-top: 3rem; }
+  .hyp-box { background: var(--grey); padding: 3rem; }
+  .hyp-label { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .hyp-status { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 1rem; border: 1px solid; margin-bottom: 1rem; }
+  .hyp-status.accepted { color: #6dbf67; border-color: #6dbf67; }
+  .hyp-body { font-size: 0.68rem; line-height: 1.9; color: var(--text-grey); }
+
+  /* ── GIFT ── */
+  .gift-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .gift-boxes { display: flex; flex-direction: column; gap: 1rem; }
+  .gift-box {
+    background: var(--mid-grey);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .gift-box::before { content: '★'; position: absolute; font-size: 12rem; color: rgba(201,168,76,0.04); top: -2rem; left: -2rem; pointer-events: none; line-height: 1; }
+  .gift-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+  .gift-label { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; letter-spacing: 0.15em; color: var(--gold); }
+
+  /* ── PERSONAS ── */
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .persona-card { border: 1px solid rgba(201,168,76,0.15); padding: 3rem; transition: border-color 0.3s; }
+  .persona-card:hover { border-color: var(--gold); }
+  .persona-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+  .persona-name { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .persona-role { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-grey); margin-bottom: 1.5rem; }
+  .persona-body { font-size: 0.68rem; line-height: 1.9; color: var(--text-grey); }
+
+  /* ── ZODIAC ── */
+  .zodiac-ring-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .zodiac-ring {
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 60s linear infinite;
+  }
+  .zodiac-ring::before { content: ''; position: absolute; inset: 20px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.1); }
+  .zodiac-sign { position: absolute; font-size: 0.9rem; color: rgba(201,168,76,0.6); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: var(--op, 0.6); } }
+  @keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } 50% { box-shadow: 0 0 20px 4px rgba(201,168,76,0.15); } }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .cover { padding: 8rem 2rem 4rem; }
+    .project-hero { grid-template-columns: 1fr; }
+    .project-hero-right { min-height: 300px; }
+    .project-hero-left { padding: 6rem 2rem 3rem; }
+    .concept-grid, .two-col, .gift-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .cards-grid, .cards-3, .hyp-grid, .persona-grid, .two-events, .two-col-equal { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .costs-3col { grid-template-columns: 1fr; gap: 2rem; }
+    .container { padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    .locations-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 2rem; padding: 3rem 2rem; }
+    .chapter-divider { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GLOBAL NAV -->
+<nav>
+  <div class="nav-logo">Portfolio ★</div>
+  <ul class="nav-links">
+    <li><a href="file:///Users/robyb/Downloads/portfolio_all_projects.html#golden-goose">Golden Goose</a></li>
+    <li><a href="file:///Users/robyb/Downloads/portfolio_all_projects.html#salad">RTE Salad</a></li>
+    <li><a href="file:///Users/robyb/Downloads/portfolio_all_projects.html#gsom">GSOM Vibe</a></li>
+    <li><a href="file:///Users/robyb/Downloads/portfolio_all_projects.html#assirm">ASSIRM</a></li>
+    <li><a href="file:///Users/robyb/Downloads/portfolio_all_projects.html#sole">PiùSicuri</a></li>
+  </ul>
+</nav>
+
+<!-- ████████████████  COVER  ████████████████ -->
+<div class="cover" id="home">
+  <div class="cover-stars" id="cover-stars"><div class="star-dot" style="left: 46.4392%; top: 79.8933%; --d: 4.409869072128423s; --del: 3.1856584649679167s; --op: 0.5053987885844049;"></div><div class="star-dot" style="left: 32.9663%; top: 70.4281%; --d: 6.602841389746511s; --del: 1.2992448805092964s; --op: 0.528549208801625;"></div><div class="star-dot" style="left: 8.54406%; top: 96.7834%; --d: 6.827553654839411s; --del: 5.622229771899537s; --op: 0.8135471126131968;"></div><div class="star-dot" style="left: 21.4753%; top: 82.8905%; --d: 6.428225274895193s; --del: 4.5024166976991795s; --op: 0.7560648211196288;"></div><div class="star-dot" style="left: 6.46256%; top: 3.52802%; --d: 2.7620083110772384s; --del: 1.1867052337534791s; --op: 0.8764234669286022;"></div><div class="star-dot" style="left: 10.4132%; top: 87.5554%; --d: 6.844970287701408s; --del: 5.896551926970731s; --op: 0.551940228545679;"></div><div class="star-dot" style="left: 92.3382%; top: 74.7588%; --d: 5.965204376704747s; --del: 3.6824761549434055s; --op: 0.3206780468005995;"></div><div class="star-dot" style="left: 55.018%; top: 64.8816%; --d: 4.29276021037737s; --del: 3.3161496597929867s; --op: 0.9869346271726618;"></div><div class="star-dot" style="left: 14.0907%; top: 0.745152%; --d: 3.797201330943375s; --del: 1.679426803852316s; --op: 0.7014599070527712;"></div><div class="star-dot" style="left: 82.6645%; top: 13.1101%; --d: 5.422574628091992s; --del: 2.5038608165643916s; --op: 0.5143144283167551;"></div><div class="star-dot" style="left: 57.4057%; top: 59.2752%; --d: 6.237635052553173s; --del: 4.115897972386799s; --op: 0.948973488947132;"></div><div class="star-dot" style="left: 82.0026%; top: 74.1077%; --d: 6.394024031494221s; --del: 2.3814548505369553s; --op: 0.5175660313789927;"></div><div class="star-dot" style="left: 89.3932%; top: 50.7681%; --d: 2.7836106163528496s; --del: 0.5382102251095817s; --op: 0.5119263990552694;"></div><div class="star-dot" style="left: 37.7579%; top: 62.4515%; --d: 2.2075473692684966s; --del: 2.888475848843268s; --op: 0.4623134022292637;"></div><div class="star-dot" style="left: 64.3862%; top: 38.0849%; --d: 2.341807881294518s; --del: 1.1718024071444713s; --op: 0.9415368410352751;"></div><div class="star-dot" style="left: 10.2343%; top: 36.976%; --d: 6.391191985636184s; --del: 3.801158756070735s; --op: 0.4032274838395343;"></div><div class="star-dot" style="left: 26.529%; top: 54.2943%; --d: 5.42262590252121s; --del: 3.9103349372957004s; --op: 0.33208181508352425;"></div><div class="star-dot" style="left: 75.226%; top: 57.6402%; --d: 4.069620031435443s; --del: 1.911696544554445s; --op: 0.8175535128560987;"></div><div class="star-dot" style="left: 74.0972%; top: 97.2364%; --d: 2.4406226677678426s; --del: 3.12129407256659s; --op: 0.4058465668736399;"></div><div class="star-dot" style="left: 57.6805%; top: 99.5799%; --d: 4.950497148663473s; --del: 0.8271171140303977s; --op: 0.801767582047221;"></div><div class="star-dot" style="left: 29.7922%; top: 30.5554%; --d: 6.664381554149078s; --del: 3.1603159632006097s; --op: 0.8147430832239073;"></div><div class="star-dot" style="left: 92.4309%; top: 93.372%; --d: 6.510338961655282s; --del: 4.149490146528672s; --op: 0.5430700290517386;"></div><div class="star-dot" style="left: 93.0662%; top: 35.6327%; --d: 2.1904872683345795s; --del: 0.5151691377580245s; --op: 0.6965161274629572;"></div><div class="star-dot" style="left: 83.636%; top: 62.5142%; --d: 6.577701762192422s; --del: 0.04654363441581877s; --op: 0.4884354561681648;"></div><div class="star-dot" style="left: 14.8359%; top: 99.0695%; --d: 3.5698263206614333s; --del: 5.753005458873402s; --op: 0.41007015138714126;"></div><div class="star-dot" style="left: 38.9401%; top: 80.1972%; --d: 4.485722351901759s; --del: 1.5770751065026907s; --op: 0.836147135452638;"></div><div class="star-dot" style="left: 74.5648%; top: 98.4537%; --d: 5.468770728085863s; --del: 1.039285464874758s; --op: 0.471364998633978;"></div><div class="star-dot" style="left: 32.2529%; top: 95.6605%; --d: 2.6104317191910917s; --del: 1.230311153065339s; --op: 0.4087580847405051;"></div><div class="star-dot" style="left: 88.3451%; top: 13.2727%; --d: 4.671392697538678s; --del: 3.2282773636151223s; --op: 0.8081974087801505;"></div><div class="star-dot" style="left: 93.4645%; top: 43.5481%; --d: 4.878298786967273s; --del: 3.054505087135408s; --op: 0.9292778454943911;"></div><div class="star-dot" style="left: 37.3413%; top: 39.0124%; --d: 2.4206097667164217s; --del: 4.4622986610810855s; --op: 0.5094257595775503;"></div><div class="star-dot" style="left: 75.7237%; top: 86.9827%; --d: 5.6994343219648815s; --del: 2.3089095445835297s; --op: 0.7586990006461265;"></div><div class="star-dot" style="left: 35.3408%; top: 61.3742%; --d: 6.478996165685826s; --del: 0.8888189171736416s; --op: 0.8724421476358415;"></div><div class="star-dot" style="left: 14.3203%; top: 52.8989%; --d: 4.546291871365746s; --del: 5.683010838125861s; --op: 0.5179858700691828;"></div><div class="star-dot" style="left: 61.6559%; top: 87.3928%; --d: 6.256323072853788s; --del: 2.4274067060415323s; --op: 0.778317512194827;"></div><div class="star-dot" style="left: 36.1536%; top: 64.616%; --d: 3.017861876751731s; --del: 5.742964540639942s; --op: 0.8040449998371553;"></div><div class="star-dot" style="left: 79.6968%; top: 47.7348%; --d: 2.7541081104038665s; --del: 0.9435034877564943s; --op: 0.5099147902099885;"></div><div class="star-dot" style="left: 53.8088%; top: 32.9787%; --d: 6.987186888417112s; --del: 3.811776659947099s; --op: 0.4828464849710981;"></div><div class="star-dot" style="left: 58.1727%; top: 91.7682%; --d: 6.979694954430281s; --del: 4.348127728308283s; --op: 0.9740779450024102;"></div><div class="star-dot" style="left: 73.1865%; top: 43.9303%; --d: 5.943085026184763s; --del: 1.4231961210013968s; --op: 0.5907889506537712;"></div><div class="star-dot" style="left: 87.201%; top: 38.2034%; --d: 2.983243398958926s; --del: 3.7076487752062506s; --op: 0.6200330222180683;"></div><div class="star-dot" style="left: 44.0128%; top: 98.8082%; --d: 3.6248233777994363s; --del: 2.4417043121595916s; --op: 0.6100182211385774;"></div><div class="star-dot" style="left: 51.4784%; top: 81.2489%; --d: 4.129089904958462s; --del: 4.975516069830771s; --op: 0.8029609697366966;"></div><div class="star-dot" style="left: 14.4677%; top: 33.8283%; --d: 3.829774594236267s; --del: 1.1789441718477989s; --op: 0.7861841731850756;"></div><div class="star-dot" style="left: 57.9927%; top: 51.9515%; --d: 6.216924362433523s; --del: 5.753024771195961s; --op: 0.9313072801347413;"></div><div class="star-dot" style="left: 85.8355%; top: 82.6785%; --d: 6.758359183854248s; --del: 5.334312300080086s; --op: 0.9183423550360579;"></div><div class="star-dot" style="left: 82.9294%; top: 40.4073%; --d: 4.277950869291205s; --del: 4.129158779038045s; --op: 0.6134267568277161;"></div><div class="star-dot" style="left: 59.7823%; top: 42.2775%; --d: 5.28042200473007s; --del: 1.9318378682310213s; --op: 0.5339472383444024;"></div><div class="star-dot" style="left: 63.9501%; top: 72.9984%; --d: 5.0381462265785775s; --del: 1.779962782012057s; --op: 0.6441816125673183;"></div><div class="star-dot" style="left: 11.2454%; top: 27.8316%; --d: 3.0661133829829743s; --del: 5.824143677952892s; --op: 0.5354090341704509;"></div><div class="star-dot" style="left: 83.878%; top: 28.5363%; --d: 6.670753750956297s; --del: 0.5096615099757094s; --op: 0.37792458361012576;"></div><div class="star-dot" style="left: 81.5197%; top: 47.8003%; --d: 4.541726490736872s; --del: 2.1011586389149857s; --op: 0.5862002717311767;"></div><div class="star-dot" style="left: 48.76%; top: 20.0279%; --d: 3.0995593611175565s; --del: 5.6712091554691115s; --op: 0.6537006308437948;"></div><div class="star-dot" style="left: 21.4718%; top: 16.5899%; --d: 4.468147042402912s; --del: 3.684137622067917s; --op: 0.3952521813998132;"></div><div class="star-dot" style="left: 2.55561%; top: 84.5517%; --d: 4.95114326013957s; --del: 5.681371975447991s; --op: 0.8826331189390806;"></div><div class="star-dot" style="left: 81.6651%; top: 71.7305%; --d: 4.920606623005554s; --del: 3.6501054106246382s; --op: 0.4034143432489576;"></div><div class="star-dot" style="left: 65.6863%; top: 1.76888%; --d: 2.6804104302763476s; --del: 4.833918258371119s; --op: 0.4200715441506001;"></div><div class="star-dot" style="left: 98.0525%; top: 30.9613%; --d: 6.251275348037677s; --del: 5.091581803338721s; --op: 0.8982549998441753;"></div><div class="star-dot" style="left: 79.9101%; top: 77.2752%; --d: 5.465697672359589s; --del: 2.389740391840574s; --op: 0.8241200739769703;"></div><div class="star-dot" style="left: 30.4672%; top: 88.523%; --d: 4.557222298801919s; --del: 0.7315732433667477s; --op: 0.643181325588287;"></div><div class="star-dot" style="left: 27.2415%; top: 22.8713%; --d: 3.575990533758306s; --del: 4.529252047585268s; --op: 0.43608704018553074;"></div><div class="star-dot" style="left: 36.8293%; top: 59.3636%; --d: 2.653456394019001s; --del: 0.9345754048801149s; --op: 0.9926530130897397;"></div><div class="star-dot" style="left: 53.7%; top: 50.2154%; --d: 3.9108143908748874s; --del: 4.088908057824284s; --op: 0.4650122412462271;"></div><div class="star-dot" style="left: 24.3531%; top: 97.924%; --d: 6.307021424062158s; --del: 1.8146807272340995s; --op: 0.35118179697071084;"></div><div class="star-dot" style="left: 81.7883%; top: 37.2856%; --d: 6.021291881368698s; --del: 0.7551231595304868s; --op: 0.9934569246128917;"></div><div class="star-dot" style="left: 93.4135%; top: 29.0405%; --d: 2.4128818069919626s; --del: 0.9963028681096013s; --op: 0.5333398908467166;"></div><div class="star-dot" style="left: 3.78702%; top: 23.0915%; --d: 2.7548469229614554s; --del: 4.479972000157918s; --op: 0.5702333804249804;"></div><div class="star-dot" style="left: 68.2516%; top: 97.3303%; --d: 4.04649325058957s; --del: 3.720172541828717s; --op: 0.869997825926522;"></div><div class="star-dot" style="left: 85.5971%; top: 35.9088%; --d: 3.8871080138222895s; --del: 0.7061606419849957s; --op: 0.7763577026148085;"></div><div class="star-dot" style="left: 51.0907%; top: 96.7314%; --d: 5.125017967750079s; --del: 0.8799923737127493s; --op: 0.9409030346251901;"></div><div class="star-dot" style="left: 86.2301%; top: 1.89685%; --d: 3.7229465770346413s; --del: 3.5199149182354117s; --op: 0.522889791575324;"></div><div class="star-dot" style="left: 59.7087%; top: 42.4768%; --d: 3.2880655795724865s; --del: 1.657650641669406s; --op: 0.7472820903308273;"></div><div class="star-dot" style="left: 67.8005%; top: 40.9465%; --d: 2.2419403582888506s; --del: 2.5836430537325183s; --op: 0.7630679694708742;"></div><div class="star-dot" style="left: 15.7447%; top: 12.5285%; --d: 6.7976690580272265s; --del: 4.8243856198028805s; --op: 0.9197180372234839;"></div><div class="star-dot" style="left: 51.0003%; top: 62.1493%; --d: 2.7689636729904925s; --del: 0.27602035600674446s; --op: 0.9862759533168886;"></div><div class="star-dot" style="left: 11.9734%; top: 51.8458%; --d: 6.5270213526479015s; --del: 5.82781333920453s; --op: 0.3407763844714183;"></div><div class="star-dot" style="left: 17.3312%; top: 19.2003%; --d: 3.0012058483190223s; --del: 3.1328591179858236s; --op: 0.7405599887802486;"></div><div class="star-dot" style="left: 77.1032%; top: 94.788%; --d: 3.140746439723621s; --del: 5.723536716610063s; --op: 0.36969855574548616;"></div><div class="star-dot" style="left: 20.9469%; top: 12.6672%; --d: 2.4661644554325477s; --del: 0.9202267078460553s; --op: 0.5999571630450296;"></div><div class="star-dot" style="left: 97.5903%; top: 69.0913%; --d: 3.2611827778821736s; --del: 5.771775199973929s; --op: 0.8932251005307132;"></div><div class="star-dot" style="left: 40.8813%; top: 91.4058%; --d: 6.22240158812637s; --del: 2.2343082233083367s; --op: 0.739738673163564;"></div><div class="star-dot" style="left: 4.39434%; top: 32.2312%; --d: 5.247707115867495s; --del: 1.7309289591164394s; --op: 0.486274863388906;"></div><div class="star-dot" style="left: 63.088%; top: 44.5341%; --d: 4.791683833212836s; --del: 2.7130646757084325s; --op: 0.457594192322474;"></div><div class="star-dot" style="left: 58.4583%; top: 4.79193%; --d: 3.0072047521295744s; --del: 1.6175729254806446s; --op: 0.4885616677542697;"></div><div class="star-dot" style="left: 43.8468%; top: 42.7859%; --d: 4.491532868363538s; --del: 4.582977034601015s; --op: 0.6094883243892408;"></div><div class="star-dot" style="left: 55.6113%; top: 51.738%; --d: 5.392874168662953s; --del: 3.061299097547068s; --op: 0.5127301304528133;"></div><div class="star-dot" style="left: 79.2968%; top: 66.0708%; --d: 3.660167292830055s; --del: 0.9248095873836617s; --op: 0.7122108530977915;"></div><div class="star-dot" style="left: 22.9135%; top: 14.237%; --d: 6.288796814393042s; --del: 4.512873906433233s; --op: 0.8103905739781658;"></div><div class="star-dot" style="left: 56.435%; top: 6.91148%; --d: 4.225241630022527s; --del: 3.6696479869973055s; --op: 0.7216662398073966;"></div><div class="star-dot" style="left: 6.8286%; top: 9.24046%; --d: 4.3301621831820105s; --del: 0.06425657178390365s; --op: 0.8948397476390759;"></div><div class="star-dot" style="left: 90.1792%; top: 94.1006%; --d: 3.268772284644198s; --del: 0.04977164482360896s; --op: 0.3264658639391489;"></div><div class="star-dot" style="left: 53.409%; top: 60.1816%; --d: 6.3538091665277525s; --del: 5.982361987071104s; --op: 0.44240812595251344;"></div><div class="star-dot" style="left: 95.505%; top: 37.3084%; --d: 5.11233717174747s; --del: 2.829693877382946s; --op: 0.6375322888283265;"></div><div class="star-dot" style="left: 24.6458%; top: 39.436%; --d: 2.4343271619242364s; --del: 5.8852882073303014s; --op: 0.873600749468864;"></div><div class="star-dot" style="left: 54.6454%; top: 46.953%; --d: 6.206138822300756s; --del: 2.8883501109503182s; --op: 0.6244275020039359;"></div><div class="star-dot" style="left: 48.8194%; top: 83.8263%; --d: 4.433822366900253s; --del: 5.068122768540732s; --op: 0.557744715930362;"></div><div class="star-dot" style="left: 94.65%; top: 4.41982%; --d: 4.514248806472108s; --del: 2.510816602981528s; --op: 0.5290814809782378;"></div><div class="star-dot" style="left: 97.1267%; top: 99.5591%; --d: 2.9724264316977056s; --del: 2.0672153872223875s; --op: 0.5110109968665468;"></div><div class="star-dot" style="left: 17.8612%; top: 62.0742%; --d: 2.0652119008762626s; --del: 1.4532573964857507s; --op: 0.820170574222632;"></div><div class="star-dot" style="left: 40.8627%; top: 49.5162%; --d: 4.8609320526107425s; --del: 5.757710061586302s; --op: 0.5844494417680889;"></div></div>
+  <p class="cover-tag">Roberta Borroni — Academic &amp; Professional Portfolio</p>
+  <h1 class="cover-title">Five<br><span>Projects.</span></h1>
+  <p class="cover-sub">A collection of marketing, events, research, and technology work spanning 2025–2026.</p>
+  <div class="cover-index">
+    <a class="cover-index-item" href="file:///Users/robyb/Downloads/portfolio_all_projects.html#golden-goose"><span class="cover-index-num">01</span>Golden Goose SS26</a>
+    <a class="cover-index-item" href="file:///Users/robyb/Downloads/portfolio_all_projects.html#salad"><span class="cover-index-num">02</span>Ready-to-Eat Salad</a>
+    <a class="cover-index-item" href="file:///Users/robyb/Downloads/portfolio_all_projects.html#gsom"><span class="cover-index-num">03</span>GSOM Vibe</a>
+    <a class="cover-index-item" href="file:///Users/robyb/Downloads/portfolio_all_projects.html#assirm"><span class="cover-index-num">04</span>ASSIRM Research</a>
+    <a class="cover-index-item" href="file:///Users/robyb/Downloads/portfolio_all_projects.html#sole"><span class="cover-index-num">05</span>#PiùSicuriSottoilSole</a>
+  </div>
+  <div class="cover-bg-text">2025</div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>GOLDEN GOOSE ★</span><span>RTE SALAD</span><span>GSOM VIBE</span><span>ASSIRM</span><span>PIÙ SICURI SOTTO IL SOLE</span><span>MARKETING</span><span>RESEARCH</span><span>EVENTS</span><span>INNOVATION</span><span>GOLDEN GOOSE ★</span><span>RTE SALAD</span><span>GSOM VIBE</span><span>ASSIRM</span><span>PIÙ SICURI SOTTO IL SOLE</span><span>MARKETING</span><span>RESEARCH</span><span>EVENTS</span><span>INNOVATION</span>
+  </div>
+</div>
+
+
+<!-- ████████████████  PROJECT 01 — GOLDEN GOOSE  ████████████████ -->
+<div class="project-chapter" id="golden-goose">
+
+  <div class="chapter-divider">
+    <h2>Golden Goose — SS26 Woman Collection</h2>
+    <span>Project 01 / 05 · Event Marketing</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left">
+      <p class="project-hero-tag animated">C.L.A.R. Event Agency — SS26 Woman Collection</p>
+      <h1 class="project-hero-title animated">Written<br>in the<br><span>Stars</span></h1>
+      <div class="project-hero-meta animated">
+        <strong>Worn on the Street</strong><br>
+        25 September 2025 — Milan<br>
+        Start of October 2025 — Venice<br>
+        End of October 2025 — Rome<br><br>
+        <span style="color:var(--gold)">8:30 PM — 12:00 AM</span>
+      </div>
+    </div>
+    <div class="project-hero-right" style="background:linear-gradient(135deg,#1a1200,#0a0a0a)">
+      <div class="project-hero-bg"></div>
+      <div class="stars" id="gg-stars"><div class="star-dot" style="left: 1.74041%; top: 16.9221%; --d: 4.0542361077161635s; --del: 1.814476224246015s; --op: 0.43537350114273066;"></div><div class="star-dot" style="left: 56.5124%; top: 78.3921%; --d: 5.125000149045565s; --del: 4.115071065315348s; --op: 0.7356442790618132;"></div><div class="star-dot" style="left: 11.8859%; top: 68.1664%; --d: 2.566842315247791s; --del: 3.3078579486830044s; --op: 0.9658274621227445;"></div><div class="star-dot" style="left: 46.7306%; top: 76.7177%; --d: 3.758821673313455s; --del: 2.939510919768535s; --op: 0.893348074173892;"></div><div class="star-dot" style="left: 78.572%; top: 34.0952%; --d: 2.5634123946586014s; --del: 4.4062782153534314s; --op: 0.8958498477158126;"></div><div class="star-dot" style="left: 68.8233%; top: 21.6005%; --d: 2.983875857287998s; --del: 0.4822563776798072s; --op: 0.7402409499041063;"></div><div class="star-dot" style="left: 64.6335%; top: 28.7666%; --d: 4.944517835537123s; --del: 4.130805504232955s; --op: 0.8915846552102042;"></div><div class="star-dot" style="left: 0.924624%; top: 30.056%; --d: 3.732458717821534s; --del: 3.9097384276721154s; --op: 0.5940867588073286;"></div><div class="star-dot" style="left: 99.2294%; top: 75.1681%; --d: 2.764425785261904s; --del: 0.5583609356125491s; --op: 0.8436242928041802;"></div><div class="star-dot" style="left: 33.2734%; top: 1.03765%; --d: 5.526797153544583s; --del: 3.2741971141824653s; --op: 0.6232166402956392;"></div><div class="star-dot" style="left: 25.3173%; top: 35.3149%; --d: 4.4823377147071195s; --del: 2.580222935931302s; --op: 0.7333599891210272;"></div><div class="star-dot" style="left: 27.0061%; top: 17.7571%; --d: 3.475146073775582s; --del: 0.6789541600975652s; --op: 0.5814458246232328;"></div><div class="star-dot" style="left: 49.4574%; top: 98.0169%; --d: 5.937027216365912s; --del: 3.0040045625188814s; --op: 0.5878107964614522;"></div><div class="star-dot" style="left: 68.9691%; top: 1.02368%; --d: 5.733742879428285s; --del: 2.2036114182664295s; --op: 0.41208153226716604;"></div><div class="star-dot" style="left: 12.2876%; top: 8.90309%; --d: 4.73526839860398s; --del: 2.2250195746159704s; --op: 0.3188898904201839;"></div><div class="star-dot" style="left: 76.7664%; top: 92.8379%; --d: 4.066726764001034s; --del: 0.8425881444838873s; --op: 0.7643968076087485;"></div><div class="star-dot" style="left: 65.1418%; top: 41.6998%; --d: 3.1496923098423446s; --del: 2.602355122703579s; --op: 0.3137108661019141;"></div><div class="star-dot" style="left: 75.9711%; top: 98.2174%; --d: 5.151547177227415s; --del: 3.69239386583007s; --op: 0.5034321971857791;"></div><div class="star-dot" style="left: 50.4017%; top: 18.3319%; --d: 5.891074856508437s; --del: 3.565613714655015s; --op: 0.4636735108405419;"></div><div class="star-dot" style="left: 72.1463%; top: 54.7215%; --d: 3.0189286960408377s; --del: 2.3285047664094405s; --op: 0.8548034728512759;"></div><div class="star-dot" style="left: 12.5393%; top: 3.84319%; --d: 5.953364291729618s; --del: 1.2394045055416725s; --op: 0.9400968307524269;"></div><div class="star-dot" style="left: 41.0038%; top: 56.1673%; --d: 2.0850039159139495s; --del: 3.5295818724239285s; --op: 0.42371749350305105;"></div><div class="star-dot" style="left: 35.677%; top: 62.6853%; --d: 4.621597458460609s; --del: 3.854762130519877s; --op: 0.6106758890578738;"></div><div class="star-dot" style="left: 35.7912%; top: 34.5606%; --d: 5.822703823821607s; --del: 0.2123394310439708s; --op: 0.447247435359481;"></div><div class="star-dot" style="left: 49.4136%; top: 90.2122%; --d: 3.7695694962663375s; --del: 4.027766445849705s; --op: 0.47696565401955326;"></div><div class="star-dot" style="left: 2.27696%; top: 73.1182%; --d: 3.9297932155541777s; --del: 3.444454707134592s; --op: 0.7880470102508544;"></div><div class="star-dot" style="left: 93.3704%; top: 23.9035%; --d: 5.213021517551002s; --del: 0.11083156572335773s; --op: 0.7888054734535648;"></div><div class="star-dot" style="left: 67.3742%; top: 72.541%; --d: 5.110626449010393s; --del: 1.9224936816151756s; --op: 0.32177639349382825;"></div><div class="star-dot" style="left: 87.0284%; top: 30.8361%; --d: 4.414714890509971s; --del: 3.5734453882085857s; --op: 0.3087343126013907;"></div><div class="star-dot" style="left: 59.5928%; top: 47.2209%; --d: 5.599206913237091s; --del: 4.4814606216546435s; --op: 0.40911745078077194;"></div><div class="star-dot" style="left: 27.1748%; top: 90.8827%; --d: 5.90172026936491s; --del: 4.09278229693865s; --op: 0.3720738934950041;"></div><div class="star-dot" style="left: 60.6474%; top: 54.0884%; --d: 4.8116306155347495s; --del: 1.117508599373707s; --op: 0.7041640660248717;"></div><div class="star-dot" style="left: 87.118%; top: 34.0114%; --d: 4.424219449695013s; --del: 3.147977248446848s; --op: 0.4404700318783897;"></div><div class="star-dot" style="left: 93.0235%; top: 37.7966%; --d: 3.1269957656082608s; --del: 3.005068144998247s; --op: 0.42215768367254314;"></div><div class="star-dot" style="left: 77.9448%; top: 69.5329%; --d: 3.363341419450054s; --del: 2.483665918933657s; --op: 0.5488211815188199;"></div><div class="star-dot" style="left: 5.60822%; top: 85.2611%; --d: 2.746422954108651s; --del: 2.7654387228394954s; --op: 0.35901757803224865;"></div><div class="star-dot" style="left: 72.3255%; top: 92.448%; --d: 4.770493227610804s; --del: 0.595229496633094s; --op: 0.6793957938546923;"></div><div class="star-dot" style="left: 90.4289%; top: 93.3213%; --d: 3.5344116179930167s; --del: 4.7009745220207675s; --op: 0.37436188426576295;"></div><div class="star-dot" style="left: 93.1605%; top: 59.1065%; --d: 3.4492147338072128s; --del: 3.820286974864786s; --op: 0.9577025865792472;"></div><div class="star-dot" style="left: 26.8122%; top: 62.6372%; --d: 4.7054750575909505s; --del: 0.4417723179544131s; --op: 0.547896606733516;"></div><div class="star-dot" style="left: 12.0953%; top: 85.1441%; --d: 3.719168515950872s; --del: 0.45992106320720205s; --op: 0.6699128327386732;"></div><div class="star-dot" style="left: 25.3545%; top: 72.2253%; --d: 2.6651004616613574s; --del: 0.9185503461185152s; --op: 0.6607305946334798;"></div><div class="star-dot" style="left: 62.6992%; top: 24.9483%; --d: 4.8320355002666044s; --del: 1.5264325048076377s; --op: 0.6280058908564363;"></div><div class="star-dot" style="left: 42.0904%; top: 61.1433%; --d: 4.768049457345684s; --del: 0.7856327754357789s; --op: 0.38069507026778016;"></div><div class="star-dot" style="left: 92.1005%; top: 56.0343%; --d: 2.2045562668650294s; --del: 3.8819824045766804s; --op: 0.6205176634489415;"></div><div class="star-dot" style="left: 57.9072%; top: 65.2178%; --d: 3.9189502745648332s; --del: 0.3186724976135563s; --op: 0.7548683095889032;"></div><div class="star-dot" style="left: 21.4557%; top: 62.5105%; --d: 4.071192332695517s; --del: 4.972202121100008s; --op: 0.31148153268494316;"></div><div class="star-dot" style="left: 14.1525%; top: 13.8813%; --d: 4.544911212189854s; --del: 2.1823163699734627s; --op: 0.5377169279935684;"></div><div class="star-dot" style="left: 21.0766%; top: 16.8399%; --d: 5.855746757451852s; --del: 4.2010318943324805s; --op: 0.7088101514248153;"></div><div class="star-dot" style="left: 91.8559%; top: 1.78106%; --d: 2.901746214034012s; --del: 3.9043200522454633s; --op: 0.6735912095280869;"></div><div class="star-dot" style="left: 18.9197%; top: 10.738%; --d: 5.289422675093723s; --del: 3.8668907037612814s; --op: 0.6258154134435707;"></div><div class="star-dot" style="left: 96.4562%; top: 91.8825%; --d: 2.844450827194123s; --del: 2.141509886914284s; --op: 0.8145925953244795;"></div><div class="star-dot" style="left: 83.4626%; top: 54.6509%; --d: 2.9026115022843677s; --del: 4.316964998843663s; --op: 0.5436782430166905;"></div><div class="star-dot" style="left: 65.2704%; top: 68.6797%; --d: 2.1557354912997706s; --del: 3.166370548887784s; --op: 0.6141479019672185;"></div><div class="star-dot" style="left: 6.32074%; top: 95.0291%; --d: 4.553069712242101s; --del: 4.70231368478447s; --op: 0.8671681444369128;"></div><div class="star-dot" style="left: 16.1159%; top: 42.4935%; --d: 5.294507770902875s; --del: 4.601437757742162s; --op: 0.34160342525160037;"></div><div class="star-dot" style="left: 34.7124%; top: 96.3135%; --d: 3.4027081649758726s; --del: 0.48576995100202025s; --op: 0.9658960598632615;"></div><div class="star-dot" style="left: 78.4627%; top: 63.8515%; --d: 4.8544635266952145s; --del: 0.6785369256601986s; --op: 0.7727877112397361;"></div><div class="star-dot" style="left: 77.8877%; top: 6.03976%; --d: 5.3059466248761025s; --del: 4.318938793179431s; --op: 0.8249927060264253;"></div><div class="star-dot" style="left: 55.4027%; top: 52.4152%; --d: 4.275501909377024s; --del: 4.937837613666724s; --op: 0.9548115059026037;"></div></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1">
+        <div class="zodiac-ring">
+          <div class="zodiac-sign" style="transform:rotate(0deg) translateY(-155px)">♈</div>
+          <div class="zodiac-sign" style="transform:rotate(30deg) translateY(-155px) rotate(-30deg)">♉</div>
+          <div class="zodiac-sign" style="transform:rotate(60deg) translateY(-155px) rotate(-60deg)">♊</div>
+          <div class="zodiac-sign" style="transform:rotate(90deg) translateY(-155px) rotate(-90deg)">♋</div>
+          <div class="zodiac-sign" style="transform:rotate(120deg) translateY(-155px) rotate(-120deg)">♌</div>
+          <div class="zodiac-sign" style="transform:rotate(150deg) translateY(-155px) rotate(-150deg)">♍</div>
+          <div class="zodiac-sign" style="transform:rotate(180deg) translateY(-155px) rotate(-180deg)">♎</div>
+          <div class="zodiac-sign" style="transform:rotate(210deg) translateY(-155px) rotate(-210deg)">♏</div>
+          <div class="zodiac-sign" style="transform:rotate(240deg) translateY(-155px) rotate(-240deg)">♐</div>
+          <div class="zodiac-sign" style="transform:rotate(270deg) translateY(-155px) rotate(-270deg)">♑</div>
+          <div class="zodiac-sign" style="transform:rotate(300deg) translateY(-155px) rotate(-300deg)">♒</div>
+          <div class="zodiac-sign" style="transform:rotate(330deg) translateY(-155px) rotate(-330deg)">♓</div>
+          <div style="font-size:3rem;color:var(--gold);opacity:0.4">★</div>
+        </div>
+      </div>
+      <div class="project-hero-bgtext">GGSS26</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT -->
+  <section class="bg-grey">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <p class="section-label">The Concept</p>
+          <h2 class="section-title">The Stars Don't Define You.<br>They Inspire You.</h2>
+          <blockquote class="concept-quote">"The rest is up to you."</blockquote>
+          <p class="concept-body">A complex experiential project presenting the SS26 women's collection through fashion, performance art, and personal identity. Zodiac signs are treated as attitudes and energies — not fixed stereotypes. Imperfection is a deliberate aesthetic and philosophical choice that reveals an authentic, evolving humanity.</p>
+        </div>
+        <div class="concept-visual reveal">
+          <div class="concept-card"><div class="concept-card-icon">♈</div><h4>Astrology as Attitude</h4><p>Signs become mindsets, energies and ways of being — not predictions or stereotypes.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">✦</div><h4>Intentional Imperfection</h4><p>The event's stylistic language, true to Golden Goose's philosophy of authentic humanity.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">◈</div><h4>Live Performance</h4><p>The SS26 collection worn by dancers, integrated into a four-act choreographic journey.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">⟡</div><h4>Urban Cosmic Setting</h4><p>An industrial garage reimagined with dim neon, worn velvet, and glitchy astral elements.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-strip"><div class="scroll-strip-inner rev"><span>IMPERFECTION</span><span>AUTHENTICITY</span><span>INDIVIDUALITY</span><span>SELF-EXPRESSION</span><span>IDENTITY</span><span>CRAFTSMANSHIP</span><span>IMPERFECTION</span><span>AUTHENTICITY</span><span>INDIVIDUALITY</span><span>SELF-EXPRESSION</span><span>IDENTITY</span><span>CRAFTSMANSHIP</span></div></div>
+
+  <!-- JOURNEY -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">The Customer Journey</p>
+      <h2 class="section-title reveal">One Night.<br>Five Moments.</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">08:30</div><div class="timeline-title">Arrival &amp; Check-In</div><div class="timeline-desc">Guests enter the transformed Golden Goose store universe.</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">08:30 – 09:30</div><div class="timeline-title">Store Exploration &amp; Collection Discovery</div><div class="timeline-desc">The SS26 Women's Collection is displayed throughout the store. Guests explore the Photo Booth, Cosmic Mirror, Astro Profiling Bar, and Tarot Card Bar while enjoying food and drinks.</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">09:30</div><div class="timeline-title">Live Performance</div><div class="timeline-desc">A four-act dance performance interpreting earth, air, water, and fire — the collection worn by dancers becomes part of the cosmic narrative.</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">10:30</div><div class="timeline-title">DJ Set &amp; Open Bar</div><div class="timeline-desc">Eclectic house music fills the space. Cosmic cocktails and refined finger food continue through the night.</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">00:00</div><div class="timeline-title">Event Closure &amp; Final Gifting</div><div class="timeline-desc">Guests exit with Golden Goose laces and a personalised zodiac sign pendant — a tangible memory to carry into everyday life.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section class="bg-grey" style="padding-bottom:0">
+    <div class="container">
+      <p class="section-label reveal">The Experience Zone</p>
+      <h2 class="section-title reveal">Four Stations.<br>One Identity.</h2>
+    </div>
+  </section>
+  <div class="features-grid">
+    <div class="feature-item"><div class="feature-number">01</div><div class="feature-icon">📸</div><div class="feature-title">Photo Booth</div><p class="feature-desc">An astrology-inspired setting with zodiac props and backdrops. Photos are instantly shareable — a piece of the cosmic experience to take home.</p></div>
+    <div class="feature-item"><div class="feature-number">02</div><div class="feature-icon">🪞</div><div class="feature-title">Cosmic Mirror</div><p class="feature-desc">Guests enter their date of birth to unlock a personal archetype. A printed card makes the ephemeral tangible.</p></div>
+    <div class="feature-item"><div class="feature-number">03</div><div class="feature-icon">⭐</div><div class="feature-title">Astro Profiling Bar</div><p class="feature-desc">Short sessions with an astro storyteller translating each zodiac sign into a mindset, attitude, and way of dressing. Identity, not destiny.</p></div>
+    <div class="feature-item"><div class="feature-number">04</div><div class="feature-icon">🃏</div><div class="feature-title">Tarot Card Bar</div><p class="feature-desc">A cartomancer offers personalised readings focused on symbolic interpretation and self-reflection — intimate, mystical, deeply personal.</p></div>
+  </div>
+
+  <!-- PERFORMANCE -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">The Entertainment</p>
+      <h2 class="section-title reveal">Four Elements.<br>Four Acts.</h2>
+      <p class="reveal" style="font-size:0.75rem;color:var(--text-grey);max-width:600px;line-height:2;margin-bottom:1rem">A live dance performance structured in four acts, each representing one of the natural elements. A choreographic journey translating abstract energies into physical movement.</p>
+      <div class="cards-grid">
+        <div class="element-card reveal" data-bg="EARTH"><div class="element-symbol">🌍</div><div class="element-name">Earth</div><div class="element-sub">Grounded Contemporary</div></div>
+        <div class="element-card reveal" data-bg="AIR" style="transition-delay:.1s"><div class="element-symbol">🌬️</div><div class="element-name">Air</div><div class="element-sub">Aerial &amp; Lyrical</div></div>
+        <div class="element-card reveal" data-bg="WATER" style="transition-delay:.2s"><div class="element-symbol">💧</div><div class="element-name">Water</div><div class="element-sub">Fluid Modern Dance</div></div>
+        <div class="element-card reveal" data-bg="FIRE" style="transition-delay:.3s"><div class="element-symbol">🔥</div><div class="element-name">Fire</div><div class="element-sub">Hip Hop &amp; Urban</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="bg-grey">
+    <div class="container">
+      <p class="section-label reveal">The Event Locations</p>
+      <h2 class="section-title reveal">Milan.<br>Venice. Rome.</h2>
+      <div class="locations-grid">
+        <div class="location-card reveal"><div class="location-inner"><div class="location-num">01</div><div class="location-city">Milan</div><div class="location-date">September 2025</div><div class="location-note">Milano Fashion Week</div></div></div>
+        <div class="location-card reveal" style="transition-delay:.15s"><div class="location-inner"><div class="location-num">02</div><div class="location-city">Venice</div><div class="location-date">Start of October 2025</div><div class="location-note">Birthplace of the brand</div></div></div>
+        <div class="location-card reveal" style="transition-delay:.3s"><div class="location-inner"><div class="location-num">03</div><div class="location-city">Rome</div><div class="location-date">End of October 2025</div><div class="location-note">The eternal city</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSTS -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">The Analytical Section</p>
+      <h2 class="section-title reveal">Cost Projection</h2>
+      <div class="reveal">
+        <div class="costs-tabs">
+          <div class="cost-tab active" onclick="showTab(event,&#39;gg-impactful&#39;,&#39;gg-selling&#39;)">Impactful Event</div>
+          <div class="cost-tab" onclick="showTab(event,&#39;gg-selling&#39;,&#39;gg-impactful&#39;)">Selling Event</div>
+        </div>
+        <div class="cost-panel active" id="gg-impactful">
+          <div class="costs-3col">
+            <div><div class="cost-city-title">Milan</div><table class="data-table"><tbody><tr><td>Event kit costs ("set up")</td><td>€50.000</td></tr><tr><td>Catering</td><td>€14.100</td></tr><tr><td>Performers and show</td><td>€8.000</td></tr><tr><td>Doormen and security</td><td>€2.500</td></tr><tr><td>Hostess and stuart</td><td>€1.125</td></tr><tr><td>DJ set and music equipment</td><td>€10.000</td></tr><tr><td>Photo booth 3D</td><td>€10.000</td></tr><tr><td>Cosmic mirror</td><td>€8.000</td></tr><tr><td>Astro profiling bar</td><td>€2.333</td></tr><tr><td>Tarot cart bar</td><td>€2.333</td></tr><tr><td>Entry gift</td><td>€900</td></tr><tr><td>Custom strings</td><td>€1.500</td></tr><tr><td>Pendant</td><td>€2.100</td></tr><tr class="total"><td>Total expected costs</td><td>€112.892</td></tr></tbody></table></div>
+            <div><div class="cost-city-title">Venice</div><table class="data-table"><tbody><tr><td>Logist cost ("set up")</td><td>€7.000</td></tr><tr><td>Catering</td><td>€14.100</td></tr><tr><td>Performers and show</td><td>€8.000</td></tr><tr><td>Doormen and security</td><td>€2.500</td></tr><tr><td>Hostess and stuart</td><td>€1.125</td></tr><tr><td>DJ set and music equipment</td><td>€10.000</td></tr><tr><td>Photo booth 3D</td><td>€10.000</td></tr><tr><td>Cosmic mirror</td><td>€8.000</td></tr><tr><td>Astro profiling bar</td><td>€2.333</td></tr><tr><td>Tarot cart bar</td><td>€778</td></tr><tr><td>Entry gift</td><td>€900</td></tr><tr><td>Custom strings</td><td>€1.500</td></tr><tr><td>Pendant</td><td>€2.100</td></tr><tr class="total"><td>Total expected costs</td><td>€68.336</td></tr></tbody></table></div>
+            <div><div class="cost-city-title">Rome</div><table class="data-table"><tbody><tr><td>Logist cost ("set up")</td><td>€7.000</td></tr><tr><td>Catering</td><td>€14.100</td></tr><tr><td>Performers and show</td><td>€8.000</td></tr><tr><td>Doormen and security</td><td>€2.500</td></tr><tr><td>Hostess and stuart</td><td>€1.125</td></tr><tr><td>DJ set and music equipment</td><td>€10.000</td></tr><tr><td>Photo booth 3D</td><td>€10.000</td></tr><tr><td>Cosmic mirror</td><td>€8.000</td></tr><tr><td>Astro profiling bar</td><td>€2.333</td></tr><tr><td>Tarot cart bar</td><td>€778</td></tr><tr><td>Entry gift</td><td>€900</td></tr><tr><td>Custom strings</td><td>€1.500</td></tr><tr><td>Pendant</td><td>€2.100</td></tr><tr class="total"><td>Total expected costs</td><td>€68.336</td></tr></tbody></table></div>
+          </div>
+        </div>
+        <div class="cost-panel" id="gg-selling">
+          <div class="costs-3col">
+            <div><div class="cost-city-title">Milan — 14 May 2026</div><table class="data-table"><tbody><tr><td>Event kit costs ("set up")</td><td>€6.000</td></tr><tr><td>Catering</td><td>€420</td></tr><tr><td>Doormen and security</td><td>€500</td></tr><tr class="total"><td>Total expected cost</td><td>€6.920</td></tr></tbody></table></div>
+            <div><div class="cost-city-title">Venice — 21 May 2026</div><table class="data-table"><tbody><tr><td>Event kit costs ("set up")</td><td>€6.000</td></tr><tr><td>Catering</td><td>€420</td></tr><tr><td>Doormen and security</td><td>€500</td></tr><tr class="total"><td>Total expected cost</td><td>€6.920</td></tr></tbody></table></div>
+            <div><div class="cost-city-title">Rome — 28 May 2026</div><table class="data-table"><tbody><tr><td>Event kit costs ("set up")</td><td>€6.000</td></tr><tr><td>Catering</td><td>€420</td></tr><tr><td>Doormen and security</td><td>€500</td></tr><tr class="total"><td>Total expected cost</td><td>€6.920</td></tr></tbody></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFT -->
+  <section class="bg-grey">
+    <div class="container">
+      <div class="gift-inner">
+        <div class="reveal">
+          <p class="section-label">The Gift</p>
+          <h2 class="section-title">A Tangible<br>Memory.</h2>
+          <p style="font-size:0.72rem;line-height:2;color:var(--text-grey);margin-top:2rem">As guests exit, they receive Golden Goose laces and a zodiac sign pendant designed to be inserted into the laces. This final gesture reinforces the personalisation theme — extending the event's narrative into everyday life.</p>
+        </div>
+        <div class="gift-boxes reveal" style="transition-delay:.2s">
+          <div class="gift-box"><span class="gift-icon">👟</span><div class="gift-label">Golden Goose Laces</div></div>
+          <div class="gift-box"><span class="gift-icon">⭐</span><div class="gift-label">Zodiac Sign Pendant</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="two-events">
+    <div class="event-block"><div class="event-block-label">Phase 01</div><h2>Impactful Event</h2><p class="event-block-date">September – October 2025 · 8:30 PM</p><p>Immersive collection launch with live dance, interactive experiences, and cosmic catering across three Italian cities during Milano Fashion Week.</p></div>
+    <div class="event-block"><div class="event-block-label">Phase 02</div><h2>Selling Event</h2><p class="event-block-date">14th, 21st, 28th May 2026 · 4 PM – 7 PM</p><p>Exclusive private preview for VIP clients with live sneaker customisation by artisans in a sophisticated astrology-themed atmosphere.</p></div>
+  </div>
+
+</div><!-- /golden-goose -->
+
+
+<!-- ████████████████  PROJECT 02 — RTE SALAD  ████████████████ -->
+<div class="project-chapter" id="salad">
+
+  <div class="chapter-divider">
+    <h2>Ready-to-Eat Salad — Marketing Research</h2>
+    <span>Project 02 / 05 · Consumer Research</span>
+  </div>
+
+  <div class="project-hero">
+    <div class="project-hero-left">
+      <p class="project-hero-tag animated">Marketing Research — New Product Concept</p>
+      <h1 class="project-hero-title animated">From<br>Field<br><span>to Fork</span></h1>
+      <div class="project-hero-meta animated">
+        <strong>Italian RTE Salad Market</strong><br>
+        Phase 1: 10 Qualitative Interviews<br>
+        Phase 2: 81 Questionnaires (59 valid)<br><br>
+        <span style="color:var(--gold)">All 4 Hypotheses Accepted</span>
+      </div>
+    </div>
+    <div class="project-hero-right" style="background:linear-gradient(135deg,#081108,#0a0a0a)">
+      <div class="project-hero-bg"></div>
+      <div class="project-hero-icon">🥗</div>
+      <div class="project-hero-bgtext">SALAD</div>
+    </div>
+  </div>
+
+  <section class="bg-grey">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <p class="section-label">The Objective</p>
+          <h2 class="section-title">What Really Drives<br>the Choice?</h2>
+          <blockquote class="concept-quote">"Consumers are not buying a light salad — they are buying a functional, filling lunch solution."</blockquote>
+          <p class="concept-body">A two-phase sequential research design combining qualitative exploration and quantitative validation to identify a promising product format for a new ready-to-eat salad line in the Italian market, uncovering the functional, emotional, and perceptual drivers behind purchase decisions.</p>
+        </div>
+        <div class="concept-visual reveal">
+          <div class="concept-card"><div class="concept-card-icon">🔬</div><h4>Qualitative Phase</h4><p>10 in-depth semi-structured interviews with Gen Z consumers aged 20–28 to explore the "why" behind consumption.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">📊</div><h4>Quantitative Phase</h4><p>81 questionnaires (59 valid) via Google Forms, validating patterns identified in the exploratory phase.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🎯</div><h4>Target Profile</h4><p>Young urban adults 18–24 (52%), predominantly female (67%), students and full-time workers.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">💡</div><h4>Product Concept</h4><p>Grilled chicken salad bowl, €5.00, transparent packaging, fork included, separate dressing.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Key Data Points</p>
+      <h2 class="section-title reveal">The Numbers<br>Behind the Salad.</h2>
+      <div class="stats-grid reveal">
+        <div class="stat-box"><span class="stat-num">3.98</span><div class="stat-label">Freshness mean score<br>(scale 1–5)</div></div>
+        <div class="stat-box"><span class="stat-num">40%</span><div class="stat-label">Prefer bowl<br>with fork included</div></div>
+        <div class="stat-box"><span class="stat-num">€4–5</span><div class="stat-label">Optimal price range<br>for max purchase intent</div></div>
+        <div class="stat-box"><span class="stat-num">34%</span><div class="stat-label">Grilled chicken<br>most preferred protein</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-strip"><div class="scroll-strip-inner"><span>FRESHNESS</span><span>CONVENIENCE</span><span>PROTEIN</span><span>SATIETY</span><span>PACKAGING</span><span>PRICE</span><span>TRANSPARENCY</span><span>FRESHNESS</span><span>CONVENIENCE</span><span>PROTEIN</span><span>SATIETY</span><span>PACKAGING</span><span>PRICE</span><span>TRANSPARENCY</span></div></div>
+
+  <!-- HYPOTHESES -->
+  <section class="bg-grey">
+    <div class="container">
+      <p class="section-label reveal">Hypothesis Testing</p>
+      <h2 class="section-title reveal">Four Hypotheses.<br>All Accepted.</h2>
+      <div class="hyp-grid reveal">
+        <div class="hyp-box"><div class="hyp-label">H1 — Freshness &amp; Convenience</div><div class="hyp-status accepted">✓ Accepted</div><p class="hyp-body">Both factors rated highly significant. Freshness (M=3.98, Mode=5) slightly stronger than convenience (M=3.49). Combine visible freshness + ready-to-eat format to maximise appeal.</p></div>
+        <div class="hyp-box"><div class="hyp-label">H2 — Packaging</div><div class="hyp-status accepted">✓ Accepted</div><p class="hyp-body">Bowl with fork (40% preference) + ingredient visibility (M=4.46) are the strongest drivers of purchase intention. Ingredient separation is secondary (M=3.10, widely dispersed opinions).</p></div>
+        <div class="hyp-box"><div class="hyp-label">H3 — Price Barrier</div><div class="hyp-status accepted">✓ Accepted</div><p class="hyp-body">Reasonable price: mean €4.34, mode €5. Too expensive threshold: mean €8.91. Price salads at €4–5 to maximise purchase intention; avoid pricing above €8.</p></div>
+        <div class="hyp-box"><div class="hyp-label">H4 — Preferred Protein</div><div class="hyp-status accepted">✓ Accepted</div><p class="hyp-body">Animal proteins dominate: grilled chicken 34%, cheese 18%, tuna 16%, eggs 12%. Plant-based total 19%. Zero respondents preferred no protein at all.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT CONCEPT -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">The Product Concept</p>
+      <h2 class="section-title reveal">Ready-to-Eat<br>Chicken Salad.</h2>
+      <div class="two-col reveal">
+        <div>
+          <p class="section-label" style="margin-bottom:2rem">Ingredients</p>
+          <div class="cards-3" style="margin-top:0; grid-template-columns:1fr 1fr; gap:1rem">
+            <div class="card-3"><div class="card-3-title">Base</div><p class="card-3-sub">Fresh iceberg lettuce mix</p></div>
+            <div class="card-3"><div class="card-3-title">Protein</div><p class="card-3-sub">Grilled chicken fillet</p></div>
+            <div class="card-3"><div class="card-3-title">Extras</div><p class="card-3-sub">Cherry tomatoes, cucumber, Parmesan, quinoa or rice</p></div>
+            <div class="card-3"><div class="card-3-title">Dressing</div><p class="card-3-sub">Separate olive oil &amp; balsamic dressing</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="section-label" style="margin-bottom:2rem">Positioning</p>
+          <table class="data-table">
+            <tbody><tr><td>Retail Price</td><td style="color:var(--gold)">€5.00</td></tr>
+            <tr><td>Packaging Format</td><td>Transparent bowl + fork</td></tr>
+            <tr><td>Target</td><td>Urban young adults 18–34</td></tr>
+            <tr><td>Key Differentiator</td><td>Chicken placed on top</td></tr>
+            <tr><td>Superfood ingredient</td><td>Quinoa or rice</td></tr>
+            <tr class="total"><td>Positioning</td><td>High-value protein lunch</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 2rem 4rem; background:var(--grey); display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(201,168,76,0.1)">
+    <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-grey)">By: Roberta Borroni · Despina Papadaki · Sofia Facchini · Ema Srâm</div>
+    <div style="font-family:&#39;Bebas Neue&#39;;font-size:1.5rem;color:var(--gold);letter-spacing:0.1em">Project 02 ★</div>
+  </div>
+
+</div><!-- /salad -->
+
+
+<!-- ████████████████  PROJECT 03 — GSOM VIBE  ████████████████ -->
+<div class="project-chapter" id="gsom">
+
+  <div class="chapter-divider">
+    <h2>GSOM Vibe — Digital Platform</h2>
+    <span>Project 03 / 05 · Product Design · Polimi GSOM</span>
+  </div>
+
+  <div class="project-hero">
+    <div class="project-hero-left">
+      <p class="project-hero-tag animated">Polimi Graduate School of Management — Group 25</p>
+      <h1 class="project-hero-title animated">Shaping<br>Purposeful<br><span>Futures</span></h1>
+      <div class="project-hero-meta animated">
+        <strong>GSOM Vibe — All-in-One Platform</strong><br>
+        Students · Alumni · Professors<br>
+        Staff · Partner Companies<br><br>
+        <span style="color:var(--gold)">Efficiency · Connection · Opportunity</span>
+      </div>
+    </div>
+    <div class="project-hero-right" style="background:linear-gradient(135deg,#080b12,#0a0a0a)">
+      <div class="project-hero-bg"></div>
+      <div class="project-hero-icon">📱</div>
+      <div class="project-hero-bgtext">VIBE</div>
+    </div>
+  </div>
+
+  <section class="bg-grey">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <p class="section-label">The Problem</p>
+          <h2 class="section-title">Fragmented.<br>Disconnected.<br>Isolated.</h2>
+          <blockquote class="concept-quote">"Without a unified ecosystem, valuable connections go unmade and real-world learning opportunities are missed."</blockquote>
+          <p class="concept-body">GSoM students, alumni, professors and partner companies currently operate in entirely disconnected digital environments. Administrative tools, learning platforms, and professional networks are siloed — critical barriers preventing mentorship, talent engagement, and collaboration at scale.</p>
+        </div>
+        <div class="concept-visual reveal">
+          <div class="concept-card"><div class="concept-card-icon">🎓</div><h4>Academic Hub</h4><p>Course schedules, exam calendars, grade tracking, and degree plan visualization — all in one place, replacing fragmented tools like Flow.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🌐</div><h4>Social Ecosystem</h4><p>A Facebook-style social layer exclusively for GSoM actors. Posts, challenges, career paths, and opportunities all in one feed.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🤖</div><h4>AI-Powered Matching</h4><p>Intelligent engine matches students with the right mentor, peer, or company — at exactly the right moment in their journey.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🏆</div><h4>Challenge Platform</h4><p>Companies post structured challenges with scope, timeline, and prizes. Students apply solo or in teams for an authentic talent showcase.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-strip"><div class="scroll-strip-inner rev"><span>EFFICIENCY</span><span>CONNECTION</span><span>OPPORTUNITY</span><span>MENTORSHIP</span><span>AI MATCHING</span><span>COMMUNITY</span><span>INNOVATION</span><span>EFFICIENCY</span><span>CONNECTION</span><span>OPPORTUNITY</span><span>MENTORSHIP</span><span>AI MATCHING</span><span>COMMUNITY</span><span>INNOVATION</span></div></div>
+
+  <!-- VALUE PROP -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Value Proposition</p>
+      <h2 class="section-title reveal">One Platform.<br>Every Actor.</h2>
+      <div class="stats-grid reveal">
+        <div class="stat-box"><span class="stat-num">220M+</span><div class="stat-label">Students worldwide in<br>higher education</div></div>
+        <div class="stat-box"><span class="stat-num">100%</span><div class="stat-label">GSoM community<br>actors covered</div></div>
+        <div class="stat-box"><span class="stat-num">3</span><div class="stat-label">Distinct advantages:<br>Efficiency, Connection, Opportunity</div></div>
+        <div class="stat-box"><span class="stat-num">AI</span><div class="stat-label">Powered matching engine<br>at the core</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-grey">
+    <div class="container">
+      <p class="section-label reveal">Platform Architecture</p>
+      <h2 class="section-title reveal">Four Layers.<br>One Mission.</h2>
+    </div>
+  </section>
+  <div class="features-grid">
+    <div class="feature-item"><div class="feature-number">01</div><div class="feature-icon">📅</div><div class="feature-title">Academic Hub</div><p class="feature-desc">Students manage their full university journey: schedules, exams, grades, and degree plans — eliminating the fragmented tool landscape entirely.</p></div>
+    <div class="feature-item"><div class="feature-number">02</div><div class="feature-icon">💬</div><div class="feature-title">Social Ecosystem</div><p class="feature-desc">Every actor has a rich profile. Professors post insights, companies publish challenges, alumni share career paths, staff broadcast opportunities.</p></div>
+    <div class="feature-item"><div class="feature-number">03</div><div class="feature-icon">🧠</div><div class="feature-title">AI Matching Engine</div><p class="feature-desc">Personalized mentorship suggestions, project fit scores, and career pathways — surfaced at the right moment for each student's journey.</p></div>
+    <div class="feature-item"><div class="feature-number">04</div><div class="feature-icon">🏅</div><div class="feature-title">Challenge Platform</div><p class="feature-desc">Companies define scope, timeline, and prize. GSoM validates participation and bridges the connection — authentic talent discovery at scale.</p></div>
+  </div>
+
+  <!-- ACTORS -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Actors &amp; Assets</p>
+      <h2 class="section-title reveal">Who's Involved.</h2>
+      <div class="two-col-equal reveal">
+        <div class="two-col-panel"><h3>Actors</h3><p>Students (direct beneficiaries of academic management, social discovery, and career matching)</p><p>Alumni (mentorship channel, staying connected to the school community)</p><p>Partner Companies (structured talent pipeline, brand presence through challenges)</p><p>Professors, Staff, GSoM Administration</p></div>
+        <div class="two-col-panel"><h3>Assets Exploited</h3><p>GSoM brand and institutional trust</p><p>Academic data and verified credentials</p><p>Alumni network spanning all programs and years</p><p>Existing industry partnerships</p><p>AI infrastructure and matching algorithms</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:2rem 4rem;background:var(--grey);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.1)">
+    <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-grey)">Polimi GSOM — Group N° 25 · Shaping Purposeful Futures Event 2026</div>
+    <div style="font-family:&#39;Bebas Neue&#39;;font-size:1.5rem;color:var(--gold);letter-spacing:0.1em">Project 03 ★</div>
+  </div>
+
+</div><!-- /gsom -->
+
+
+<!-- ████████████████  PROJECT 04 — ASSIRM  ████████████████ -->
+<div class="project-chapter" id="assirm">
+
+  <div class="chapter-divider">
+    <h2>Esplorando il Lavoro — ASSIRM Research</h2>
+    <span>Project 04 / 05 · Qualitative Research · Università Cattolica</span>
+  </div>
+
+  <div class="project-hero">
+    <div class="project-hero-left">
+      <p class="project-hero-tag animated">ASSIRM · Università Cattolica del Sacro Cuore</p>
+      <h1 class="project-hero-title animated">Young<br>Grads &amp;<br><span>Research</span></h1>
+      <div class="project-hero-meta animated">
+        <strong>Esplorando il Lavoro</strong><br>
+        Neolaureati e Ricerche di Mercato<br>
+        Focus Group · 6 Participants<br><br>
+        <span style="color:var(--gold)">Qualitative Sector Study</span>
+      </div>
+    </div>
+    <div class="project-hero-right" style="background:linear-gradient(135deg,#120808,#0a0a0a)">
+      <div class="project-hero-bg"></div>
+      <div class="project-hero-icon">📊</div>
+      <div class="project-hero-bgtext">RICERCA</div>
+    </div>
+  </div>
+
+  <section class="bg-grey">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <p class="section-label">The Brief</p>
+          <h2 class="section-title">How Well Do Young<br>Grads Know Market<br>Research?</h2>
+          <blockquote class="concept-quote">"Il settore del marketing e, in particolare, quello delle ricerche di mercato, forse è ancora poco conosciuto."</blockquote>
+          <p class="concept-body">ASSIRM — the Italian market research association — wanted to understand how well the sector is known among graduates in psychology, sociology, statistics, economics, marketing, and communication, and what actions to take to transmit the sector's value and professional opportunities to young people.</p>
+        </div>
+        <div class="concept-visual reveal">
+          <div class="concept-card"><div class="concept-card-icon">🎯</div><h4>Objective 1</h4><p>Measure how well the market research profession is known, valued, and considered by young graduates in related fields.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">📣</div><h4>Objective 2</h4><p>Identify concrete actions ASSIRM can take as a sector association to communicate the value of market research to young graduates.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🔍</div><h4>Area 1 &amp; 2</h4><p>Work perspective and professional sectors: how graduates imagine their professional future and what sectors they consider.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">💼</div><h4>Area 3 &amp; 4</h4><p>Market research as a discipline and as a career: specific knowledge and imagination of working within the sector.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-strip"><div class="scroll-strip-inner"><span>MARKETING</span><span>PSICOLOGIA</span><span>SOCIOLOGIA</span><span>STATISTICA</span><span>ECONOMIA</span><span>COMUNICAZIONE</span><span>RICERCA</span><span>MARKETING</span><span>PSICOLOGIA</span><span>SOCIOLOGIA</span><span>STATISTICA</span><span>ECONOMIA</span><span>COMUNICAZIONE</span><span>RICERCA</span></div></div>
+
+  <!-- FOCUS GROUP -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">The Research</p>
+      <h2 class="section-title reveal">Focus Group.<br>Six Voices.</h2>
+      <div class="stats-grid reveal">
+        <div class="stat-box"><span class="stat-num">6</span><div class="stat-label">Participants with diverse<br>educational backgrounds</div></div>
+        <div class="stat-box"><span class="stat-num">6/6</span><div class="stat-label">Know the market<br>research world</div></div>
+        <div class="stat-box"><span class="stat-num">2/6</span><div class="stat-label">Currently work in<br>market research</div></div>
+        <div class="stat-box"><span class="stat-num">4</span><div class="stat-label">Thematic areas<br>investigated</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-grey">
+    <div class="container">
+      <p class="section-label reveal">Key Findings</p>
+      <h2 class="section-title reveal">What Emerged<br>from the Group.</h2>
+    </div>
+  </section>
+  <div class="features-grid">
+    <div class="feature-item"><div class="feature-number">01</div><div class="feature-icon">🎨</div><div class="feature-title">Creativity Dominates</div><p class="feature-desc">In both marketing and communication, the word "creativity" emerges repeatedly as the defining quality of work in these areas. Alongside it: attention to both verbal and non-verbal communication.</p></div>
+    <div class="feature-item"><div class="feature-number">02</div><div class="feature-icon">🌫️</div><div class="feature-title">Low Sector Awareness</div><p class="feature-desc">Knowledge of market research — for those who don't work in it — is relatively scarce and comes almost exclusively from university, which often fails to spark genuine interest in the field.</p></div>
+    <div class="feature-item"><div class="feature-number">03</div><div class="feature-icon">👩‍💼</div><div class="feature-title">Prototypical Worker</div><p class="feature-desc">Participants imagine a middle-aged woman who is precise, punctual, and detail-oriented — critically curious, with a flexible educational background depending on the type of research.</p></div>
+    <div class="feature-item"><div class="feature-number">04</div><div class="feature-icon">🎤</div><div class="feature-title">Open to Events</div><p class="feature-desc">Participants are willing to attend in-person events and free online webinars to learn more about the sector — curious, but needing a bridge from theory to the lived reality of the profession.</p></div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Recommendations for ASSIRM</p>
+      <h2 class="section-title reveal">Three Actions.<br>One Goal.</h2>
+      <div class="cards-3 reveal">
+        <div class="card-3"><div class="card-3-num">01</div><div class="card-3-title">Events &amp; Webinars</div><p class="card-3-sub">Organise in-person events and free online webinars featuring experienced professionals — to answer the questions graduates are genuinely curious about: "What do you like about this job? What are the recurring challenges?"</p></div>
+        <div class="card-3"><div class="card-3-num">02</div><div class="card-3-title">Bridge Theory &amp; Practice</div><p class="card-3-sub">Close the gap between academic theory — which often distances graduates from the sector — and the practical reality of working in market research. Make the day-to-day visible and relatable.</p></div>
+        <div class="card-3"><div class="card-3-num">03</div><div class="card-3-title">Sector Storytelling</div><p class="card-3-sub">Give the sector a human face. Use storytelling from real practitioners across different research typologies to show how varied and intellectually stimulating the work truly is.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:2rem 4rem;background:var(--grey);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.1)">
+    <div style="font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-grey)">By: V. Belotti · C. Biganzoli · R. Borroni · M.V. Cortonesi · M.C. Ioni · N. Malinarich · S. Quatraro · M. Scarinzi</div>
+    <div style="font-family:&#39;Bebas Neue&#39;;font-size:1.5rem;color:var(--gold);letter-spacing:0.1em">Project 04 ★</div>
+  </div>
+
+</div><!-- /assirm -->
+
+
+<!-- ████████████████  PROJECT 05 — PIÙ SICURI SOTTO IL SOLE  ████████████████ -->
+<div class="project-chapter" id="sole">
+
+  <div class="chapter-divider">
+    <h2>#PiùSicuriSottoilSole — Social Marketing</h2>
+    <span>Project 05 / 05 · Social Marketing · Health Communication</span>
+  </div>
+
+  <div class="project-hero">
+    <div class="project-hero-left">
+      <p class="project-hero-tag animated">Social Marketing Campaign — Sun Protection</p>
+      <h1 class="project-hero-title animated">#Più<br>Sicuri<br><span>Sotto il Sole</span></h1>
+      <div class="project-hero-meta animated">
+        <strong>Target: Italians aged 18–29</strong><br>
+        Instagram · TikTok · University Workshops<br>
+        Fondazione Veronesi Partnership<br><br>
+        <span style="color:var(--gold)">Social Learning Theory Framework</span>
+      </div>
+    </div>
+    <div class="project-hero-right" style="background:linear-gradient(135deg,#120e00,#0a0a0a)">
+      <div class="project-hero-bg"></div>
+      <div class="project-hero-icon">☀️</div>
+      <div class="project-hero-bgtext">SOLE</div>
+    </div>
+  </div>
+
+  <section class="bg-grey">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <p class="section-label">The Campaign</p>
+          <h2 class="section-title">Protect Your<br>Skin. Own<br>Your Story.</h2>
+          <blockquote class="concept-quote">"La combinazione di apprendimento vicario, imitazione ed educazione all'azione rappresenta un modello potente per modificare il comportamento."</blockquote>
+          <p class="concept-body">A social marketing campaign targeting Italians aged 18–29, promoting sun protection habits, regular dermatological check-ups, and UV risk awareness. Grounded in Social Learning Theory: people learn by observing admired figures and responding to social pressure from peers — applied here through influencer strategy, viral video, and university workshops.</p>
+        </div>
+        <div class="concept-visual reveal">
+          <div class="concept-card"><div class="concept-card-icon">🎯</div><h4>Sensibilizzazione</h4><p>Educate young people on UV risks and promote primary prevention habits including daily SPF use.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🔄</div><h4>Behavioural Change</h4><p>Encourage regular sunscreen use, abandon tanning beds, and shift daily habits toward sun-safe behaviour.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">🏥</div><h4>Prevenzione Secondaria</h4><p>Promote periodic dermatological check-ups for early diagnosis of skin cancer.</p></div>
+          <div class="concept-card"><div class="concept-card-icon">📲</div><h4>Social Learning</h4><p>Leverage vicarious learning (admired figures) and social pressure (peer inclusion) for lasting change.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SURVEY FINDINGS -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Exploratory Survey — Key Findings</p>
+      <h2 class="section-title reveal">The Data Is<br>Clear.</h2>
+      <div class="stats-grid reveal">
+        <div class="stat-box"><span class="stat-num">48%</span><div class="stat-label">Use sunscreen only<br>in summer or on holiday</div></div>
+        <div class="stat-box"><span class="stat-num">42%</span><div class="stat-label">Have never had a<br>dermatological check-up</div></div>
+        <div class="stat-box"><span class="stat-num">57%</span><div class="stat-label">Forget to apply<br>sunscreen (top reason)</div></div>
+        <div class="stat-box"><span class="stat-num">52%</span><div class="stat-label">Feel "well-informed"<br>about solar risks</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-strip"><div class="scroll-strip-inner rev"><span>SPF 50+</span><span>PREVENTION</span><span>DERMATOLOGIA</span><span>UV PROTECTION</span><span>SALUTE</span><span>SKIN CANCER</span><span>FONDAZIONE VERONESI</span><span>SPF 50+</span><span>PREVENTION</span><span>DERMATOLOGIA</span><span>UV PROTECTION</span><span>SALUTE</span><span>SKIN CANCER</span><span>FONDAZIONE VERONESI</span></div></div>
+
+  <!-- CHANNELS -->
+  <section class="bg-grey" style="padding-bottom:0">
+    <div class="container">
+      <p class="section-label reveal">Communication Strategy</p>
+      <h2 class="section-title reveal">Five Channels.<br>One Message.</h2>
+    </div>
+  </section>
+  <div class="features-grid">
+    <div class="feature-item"><div class="feature-number">01</div><div class="feature-icon">📸</div><div class="feature-title">Instagram</div><p class="feature-desc"><strong style="color:var(--cream)">Eleonora Petrella</strong> targets the female audience with skincare and sun protection advice. <strong style="color:var(--cream)">Max Angioni</strong> uses humour to reach the male audience on the importance of prevention. Posts and stories combining information with a light, engaging style.</p></div>
+    <div class="feature-item"><div class="feature-number">02</div><div class="feature-icon">🎬</div><div class="feature-title">TikTok</div><p class="feature-desc">A viral street interview video: a short teaser hooks users, direct questions to passers-by reveal real habits, and the conclusion delivers a sensibilisation message with statistics and expert advice from dermatologists.</p></div>
+    <div class="feature-item"><div class="feature-number">03</div><div class="feature-icon">🎓</div><div class="feature-title">University Workshops</div><p class="feature-desc">Interactive 20–30 minute talks by Fondazione Veronesi dermatologists covering UV damage and sun protection science. Followed by live Q&amp;A sessions to deepen engagement with students.</p></div>
+    <div class="feature-item"><div class="feature-number">04</div><div class="feature-icon">🎁</div><div class="feature-title">Promo Kits</div><p class="feature-desc">Distributed at workshops: high-quality sunscreen samples, an informative brochure co-signed by the influencers, and a QR code directly linking to the Fondazione Veronesi dermatology booking platform.</p></div>
+  </div>
+
+  <!-- PERSONAS & KPIs -->
+  <section class="bg-black">
+    <div class="container">
+      <p class="section-label reveal">Target Personas</p>
+      <h2 class="section-title reveal">Two Faces<br>of the Campaign.</h2>
+      <div class="persona-grid reveal">
+        <div class="persona-card"><div class="persona-icon">👨‍🎓</div><div class="persona-name">Marco</div><div class="persona-role">Lo Studente Disinformato · Age 20</div><p class="persona-body">Has never considered sun protection a priority but is starting to show interest. Seeks simple information and affordable products compatible with a student budget. Responds well to humour-based messaging (Max Angioni) and peer-normalisation of SPF use.</p></div>
+        <div class="persona-card"><div class="persona-icon">👩‍💻</div><div class="persona-name">Giulia</div><div class="persona-role">L'Aspirante Consapevole · Age 20</div><p class="persona-body">Passionate about beauty and lifestyle, follows skincare trends on social media. Her choices are based more on generic suggestions than real skin knowledge. Curious to learn about prevention and dermatological visits. Responds to expert-backed, beauty-adjacent messaging (Eleonora Petrella).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="bg-grey">
+    <div class="container">
+      <p class="section-label reveal">Monitoring &amp; Evaluation</p>
+      <h2 class="section-title reveal">Four KPIs.<br>Measurable Impact.</h2>
+      <div class="two-col-equal reveal">
+        <div class="two-col-panel">
+          <h3>KPIs</h3>
+          <table class="data-table">
+            <tbody><tr><td>Coinvolgimento informativo</td><td>Landing page clicks</td></tr>
+            <tr><td>Visite dermatologiche</td><td>Booking growth (traditional + online)</td></tr>
+            <tr><td>Engagement social</td><td>Social media interaction increase</td></tr>
+            <tr class="total"><td>Efficacia workshop</td><td>Post-event attitude surveys</td></tr>
+          </tbody></table>
+        </div>
+        <div class="two-col-panel">
+          <h3>Landing Page</h3>
+          <p>A dedicated website guiding users toward skin cancer prevention — featuring a dermatologist finder, practical SPF tips, and risk information. Clear design with a prominent "Prenota la tua visita" booking CTA linked directly to the Fondazione Veronesi platform.</p>
+          <p>The landing page is the campaign hub: all channels — influencers, TikTok, workshop QR codes — funnel users toward it for information and action.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:2rem 4rem;background:var(--black);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.1)">
+    <div style="font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-grey)">By: V. Belotti · C. Biganzoli · R. Borroni · N. Malinarich · S. Quatraro · M. Scarinzi</div>
+    <div style="font-family:&#39;Bebas Neue&#39;;font-size:1.5rem;color:var(--gold);letter-spacing:0.1em">Project 05 ★</div>
+  </div>
+
+</div><!-- /sole -->
+
+
+<!-- ████████████████  FOOTER  ████████████████ -->
+<footer>
+  <div>
+    <div class="footer-logo">Roberta Borroni ★</div>
+    <div style="font-size:0.6rem;color:var(--text-grey);letter-spacing:0.1em;margin-top:0.5rem;text-transform:uppercase">Five Projects · 2025–2026</div>
+  </div>
+  <div class="footer-credits">
+    Golden Goose SS26 · RTE Salad Research<br>
+    GSOM Vibe · ASSIRM · #PiùSicuriSottoilSole<br><br>
+    Marketing · Research · Events · Technology
+  </div>
+</footer>
+
+
+<script>
+  // ── Stars on cover
+  const coverStars = document.getElementById('cover-stars');
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement('div');
+    s.className = 'star-dot';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.setProperty('--d', (2 + Math.random() * 5) + 's');
+    s.style.setProperty('--del', (Math.random() * 6) + 's');
+    s.style.setProperty('--op', (0.3 + Math.random() * 0.7).toString());
+    coverStars.appendChild(s);
+  }
+
+  // ── Stars in GG hero
+  const ggStars = document.getElementById('gg-stars');
+  if (ggStars) {
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('div');
+      s.className = 'star-dot';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.setProperty('--d', (2 + Math.random() * 4) + 's');
+      s.style.setProperty('--del', (Math.random() * 5) + 's');
+      s.style.setProperty('--op', (0.3 + Math.random() * 0.7).toString());
+      ggStars.appendChild(s);
+    }
+  }
+
+  // ── Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
+
+  // ── Tab switching (scoped)
+  function showTab(e, showId, hideId) {
+    document.getElementById(showId).classList.add('active');
+    document.getElementById(hideId).classList.remove('active');
+    const tabs = e.target.parentElement.querySelectorAll('.cost-tab');
+    tabs.forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+  }
+
+  // ── Nav active state
+  const chapters = document.querySelectorAll('.project-chapter, #home');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    chapters.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+      a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '';
+    });
+  });
+</script>
+
+
+</body></html>
